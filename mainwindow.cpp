@@ -7,8 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->totalSize_label->setVisible(false);
-
     this->defaultExtensionsMap[ui->action_cpp] = "*.cpp";
     this->defaultExtensionsMap[ui->action_txt] = "*.txt";
     this->defaultExtensionsMap[ui->action_gif] = "*.gif";
@@ -54,20 +52,18 @@ void MainWindow::getData()
         qDebug() << e.what();
     }
 
-    QFile file("/home/mirabilis/Downloads/Telegram Desktop/data_format.json");
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-
-    response = file.readAll().toStdString();
-
     // Parse response
     this->currentData = json::parse(response);
+
+    // total size labels
+    ui->totalSize_label->setText(tr("Total size:\t") + QString::number(currentData["total"].get<quint64>() / 1e6) + tr(" Mb"));
 
     // table
     ui->tableWidget->setColumnCount(3);
     ui->tableWidget->setRowCount(currentData["files"].size());
 
     QStringList horHeaders;
-    horHeaders << "Filename" << "Created on" << "Size";
+    horHeaders << "Filename" << "Created on" << "Size, \nbytes";
     ui->tableWidget->setHorizontalHeaderLabels(horHeaders);
 
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -76,6 +72,11 @@ void MainWindow::getData()
     for (auto &file : currentData["files"])
     {
         auto fileName = file["filename"].get<std::string>();
+
+        size_t pos = fileName.find(currentPath.toStdString());
+        if (pos != std::string::npos)
+            fileName.erase(pos, currentPath.length());
+
         auto createdOn = file["creation_date"].get<std::string>();
         auto fileSize = file["file_size"].get<quint64>();
 
@@ -143,6 +144,12 @@ void MainWindow::on_actionAdd_custom_triggered()
 
 void MainWindow::on_actionChoose_path_triggered()
 {
+    // clear ui
+    ui->tableWidget->clear();
+    ui->tableWidget->setColumnCount(0);
+    ui->tableWidget->setRowCount(0);
+    ui->totalSize_label->clear();
+
     currentPath = QInputDialog::getText(this, tr("Choose path to be tracked"), tr("Enter path: "));
 
     ui->path_label->setText(currentPath);
