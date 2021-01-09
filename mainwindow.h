@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include "src/client.h"
 #include <nlohmann/json.hpp>
+#include <QInputDialog>
+#include <QDebug>
+#include <QDialogButtonBox>
+#include <QFile>
+#include <QDateTime>
 
 using nlohmann::json;
 
@@ -23,14 +28,24 @@ public:
     void getData();
 
 private slots:
-    void on_actionAdd_triggered();
+    void on_actionExit_triggered();
+
+private slots:
+    void on_actionChoose_path_triggered();
+
+    void on_actionAdd_custom_triggered();
 
     void on_actionConnect_triggered();
+
+private:
+    std::string formRequest(QString dirpath, QStringList extensions);
 
 private:
     Ui::MainWindow *ui;
     Client *client;
     QString currentPath = "";
     json currentData;
+    QMap<QAction*, QString> defaultExtensionsMap;
+    QStringList extensions;
 };
 #endif // MAINWINDOW_H

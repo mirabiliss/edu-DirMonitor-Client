@@ -51,7 +51,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
@@ -63,33 +63,36 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionAdd"/>
     <addaction name="actionConnect"/>
+    <addaction name="actionChoose_path"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuExtensions">
+    <property name="title">
+     <string>Extensions</string>
+    </property>
+    <addaction name="action_txt"/>
+    <addaction name="action_docx"/>
+    <addaction name="action_pdf"/>
+    <addaction name="action_bin"/>
+    <addaction name="action_zip"/>
+    <addaction name="action_png"/>
+    <addaction name="action_jpg"/>
+    <addaction name="action_mp3"/>
+    <addaction name="action_gif"/>
+    <addaction name="action_cpp"/>
+    <addaction name="action_tmp"/>
+    <addaction name="actionAdd_custom"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuExtensions"/>
   </widget>
-  <action name="actionAdd">
-   <property name="text">
-    <string>Add...</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+A</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
    </property>
    <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
+    <font/>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -98,6 +101,104 @@
   <action name="actionConnect">
    <property name="text">
     <string>Connect</string>
+   </property>
+  </action>
+  <action name="action_txt">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.txt</string>
+   </property>
+  </action>
+  <action name="action_docx">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.docx / .doc</string>
+   </property>
+  </action>
+  <action name="action_bin">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.bin</string>
+   </property>
+  </action>
+  <action name="action_zip">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.zip</string>
+   </property>
+  </action>
+  <action name="action_png">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.png</string>
+   </property>
+  </action>
+  <action name="action_jpg">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.jpg / .jpeg</string>
+   </property>
+  </action>
+  <action name="action_mp3">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.mp3</string>
+   </property>
+  </action>
+  <action name="action_gif">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.gif</string>
+   </property>
+  </action>
+  <action name="action_cpp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.cpp</string>
+   </property>
+  </action>
+  <action name="action_tmp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.tmp</string>
+   </property>
+  </action>
+  <action name="action_pdf">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>.pdf</string>
+   </property>
+  </action>
+  <action name="actionAdd_custom">
+   <property name="text">
+    <string>Add custom...</string>
+   </property>
+  </action>
+  <action name="actionChoose_path">
+   <property name="text">
+    <string>Choose path</string>
    </property>
   </action>
  </widget>
