@@ -16,13 +16,13 @@ void Client::setupThis()
          (char *)&serv_addr_.sin_addr.s_addr,
          server_->h_length);
     serv_addr_.sin_port = htons(portno_);
+
+    if (connect(sockfd_, (struct sockaddr *) &serv_addr_, sizeof(serv_addr_)) < 0)
+        throw std::runtime_error("ERROR connecting to server");
 }
 
 std::string Client::get(const std::string &req)
 {
-    if (connect(sockfd_, (struct sockaddr *) &serv_addr_, sizeof(serv_addr_)) < 0)
-        throw std::runtime_error("ERROR connecting to server");
-
     int n = write(sockfd_, req.c_str(), req.length());
     if (n < 0)
         throw std::runtime_error("ERROR writing to socket");

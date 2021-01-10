@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    client->get("__close__");
 }
 
 void MainWindow::setupClient(const char *hostname, const size_t portno)
