@@ -13,7 +13,7 @@
 class Client
 {
 public:
-    static const size_t MAX_RESPONSE_LENGTH = 1 << 14;
+    static const size_t MAX_RESPONSE_LENGTH = 1 << 24;
 
     Client(std::string hostname, const size_t portno)
         : hostname_(std::move(hostname)), portno_(portno) {}

@@ -28,6 +28,7 @@ MainWindow::~MainWindow()
 void MainWindow::setupClient(const char *hostname, const size_t portno)
 {
     client = new Client(hostname, portno);
+    client->setupThis();
 }
 
 void MainWindow::getData()
@@ -65,8 +66,8 @@ void MainWindow::getData()
     QStringList horHeaders;
     horHeaders << "Filename" << "Created on" << "Size, \nbytes";
     ui->tableWidget->setHorizontalHeaderLabels(horHeaders);
-
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 
     int k = 0;
     for (auto &file : currentData["files"])
