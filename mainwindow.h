@@ -9,6 +9,7 @@
 #include <QDialogButtonBox>
 #include <QFile>
 #include <QDateTime>
+#include <QMessageBox>
 
 using nlohmann::json;
 
@@ -25,7 +26,7 @@ public:
     ~MainWindow();
     void setupClient(const char *hostname, const size_t portno);
 
-    void getData();
+    bool getData();
 
 private slots:
     void on_actionExit_triggered();
@@ -46,6 +47,7 @@ private:
     QString currentPath = "";
     json currentData;
     QMap<QAction*, QString> defaultExtensionsMap;
-    QStringList extensions;
+    QSet<QString> extensions;
+    void showData();
 };
 #endif // MAINWINDOW_H

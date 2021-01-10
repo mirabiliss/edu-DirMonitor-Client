@@ -32,32 +32,8 @@ void MainWindow::setupClient(const char *hostname, const size_t portno)
     client->setupThis();
 }
 
-void MainWindow::getData()
+void MainWindow::showData()
 {
-    if (currentPath.isEmpty())
-        throw std::runtime_error("No path given");
-
-    for (auto el = defaultExtensionsMap.begin(); el != defaultExtensionsMap.end(); el++)
-    {
-        if (el.key()->isChecked())
-        {
-            this->extensions << el.value();
-        }
-    }
-
-    std::string request = formRequest(this->currentPath, this->extensions);
-
-    std::string response;
-    try {
-        response = client->get(request);
-    } catch (std::runtime_error& e) {
-        qDebug() << e.what();
-    }
-
-    // Parse response
-    this->currentData = json::parse(response);
-
-    // total size labels
     ui->totalSize_label->setText(tr("Total size:\t") + QString::number(currentData["total"].get<quint64>() / 1e6) + tr(" Mb"));
 
     // table
@@ -88,6 +64,38 @@ void MainWindow::getData()
 
         k++;
     }
+}
+
+bool MainWindow::getData()
+{
+    if (currentPath.isEmpty())
+        throw std::runtime_error("No path given");
+
+    for (auto el = defaultExtensionsMap.begin(); el != defaultExtensionsMap.end(); el++)
+    {
+        if (el.key()->isChecked())
+        {
+            this->extensions.insert(el.value());
+        }
+        else
+        {
+            this->extensions.remove(el.value());
+        }
+    }
+
+    std::string request = formRequest(this->currentPath, this->extensions.values());
+
+    std::string response;
+    try {
+        response = client->get(request);
+    } catch (std::runtime_error& e) {
+        qDebug() << e.what();
+    }
+
+    // Parse response
+    this->currentData = json::parse(response);
+
+    return currentData["status"].get<bool>();
 }
 
 std::string MainWindow::formRequest(QString dirpath, QStringList extensions)
@@ -140,8 +148,19 @@ void MainWindow::on_actionAdd_custom_triggered()
 {
     QString customExtensions = QInputDialog::getText(this, tr("Add custom file extensions"),
                                                      tr("Enter extensions separating them with ' | '\n"));
-    if (!customExtensions.isEmpty())
-        this->extensions << customExtensions;
+    QStringList customExtensionsList = customExtensions.split(" | ");
+    QRegularExpression re("\\*\\.\\w+");
+
+    for (auto &ext : customExtensionsList) {
+        auto match = re.match(ext);
+        if (match.hasMatch()) {
+            if (match.captured().size() != ext.size()) {
+                QMessageBox::critical(this, "Error", QString("Invalid extension %1, aborting.").arg(ext));
+                return;
+            }
+            this->extensions.insert(ext);
+        }
+    }
 }
 
 void MainWindow::on_actionChoose_path_triggered()
@@ -156,7 +175,12 @@ void MainWindow::on_actionChoose_path_triggered()
 
     ui->path_label->setText(currentPath);
 
-    getData();
+    if (getData()) {
+        showData();
+    } else {
+        std::string reason = this->currentData["reason"].get<std::string>();
+        QMessageBox::critical(this, "Error", QString::fromStdString(reason));
+    }
 }
 
 void MainWindow::on_actionExit_triggered()
