@@ -37,3 +37,4 @@ target_link_libraries(edu-DirMonitor-Client PRIVATE Qt${QT_VERSION_MAJOR}::Widge
 
 find_package(nlohmann_json 3.2.0 REQUIRED)
 target_link_libraries(edu-DirMonitor-Client PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(edu-DirMonitor-Client PRIVATE pthread)

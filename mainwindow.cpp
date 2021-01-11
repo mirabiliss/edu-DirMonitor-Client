@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <chrono>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -58,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
     client_logger = spdlog::get("client_logger");
     client_warn_logger = spdlog::get("client_warn_logger");
 
+    spdlog::flush_every(std::chrono::seconds(5));
 }
 
 MainWindow::~MainWindow()
