@@ -3,24 +3,8 @@
 
 #include <chrono>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+void MainWindow::setupLoggers()
 {
-    ui->setupUi(this);
-
-    this->defaultExtensionsMap[ui->action_cpp] = "*.cpp";
-    this->defaultExtensionsMap[ui->action_txt] = "*.txt";
-    this->defaultExtensionsMap[ui->action_gif] = "*.gif";
-    this->defaultExtensionsMap[ui->action_mp3] = "*.mp3";
-    this->defaultExtensionsMap[ui->action_pdf] = "*.pdf";
-    this->defaultExtensionsMap[ui->action_tmp] = "*.tmp";
-    this->defaultExtensionsMap[ui->action_zip] = "*.zip";
-    this->defaultExtensionsMap[ui->action_bin] = "*.bin";
-    this->defaultExtensionsMap[ui->action_png] = "*.png";
-    this->defaultExtensionsMap[ui->action_docx] = "*.doc | *.docx";
-    this->defaultExtensionsMap[ui->action_jpg] = "*.jpg | *.jpeg";
-
     // QDir::tempPath().toStdString() + "/basic-log.txt"
     // logger:
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
@@ -61,6 +45,27 @@ MainWindow::MainWindow(QWidget *parent)
     client_warn_logger = spdlog::get("client_warn_logger");
 
     spdlog::flush_every(std::chrono::seconds(5));
+}
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+    this->defaultExtensionsMap[ui->action_cpp] = "*.cpp";
+    this->defaultExtensionsMap[ui->action_txt] = "*.txt";
+    this->defaultExtensionsMap[ui->action_gif] = "*.gif";
+    this->defaultExtensionsMap[ui->action_mp3] = "*.mp3";
+    this->defaultExtensionsMap[ui->action_pdf] = "*.pdf";
+    this->defaultExtensionsMap[ui->action_tmp] = "*.tmp";
+    this->defaultExtensionsMap[ui->action_zip] = "*.zip";
+    this->defaultExtensionsMap[ui->action_bin] = "*.bin";
+    this->defaultExtensionsMap[ui->action_png] = "*.png";
+    this->defaultExtensionsMap[ui->action_docx] = "*.doc | *.docx";
+    this->defaultExtensionsMap[ui->action_jpg] = "*.jpg | *.jpeg";
+
+    setupLoggers();
 }
 
 MainWindow::~MainWindow()
