@@ -18,6 +18,46 @@ MainWindow::MainWindow(QWidget *parent)
     this->defaultExtensionsMap[ui->action_png] = "*.png";
     this->defaultExtensionsMap[ui->action_docx] = "*.doc | *.docx";
     this->defaultExtensionsMap[ui->action_jpg] = "*.jpg | *.jpeg";
+
+    // QDir::tempPath().toStdString() + "/basic-log.txt"
+    // logger:
+    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    console_sink->set_level(spdlog::level::debug);
+    console_sink->set_pattern(basic_log_format);
+    logger_sinks.push_back(console_sink);
+    // file sinks:
+    // basic-log.txt
+    auto basic_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/basic-log.txt", true);
+    basic_file_sink->set_level(spdlog::level::trace);
+    basic_file_sink->set_pattern(basic_log_format);
+    logger_sinks.push_back(basic_file_sink);
+
+    // warning-log.txt
+    auto warn_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/warns-log.txt", true);
+    warn_file_sink->set_level(spdlog::level::warn);
+    warn_file_sink->set_pattern(errors_log_format);
+    warn_logger_sinks.push_back(warn_file_sink);
+
+    // errors-log.txt
+    auto error_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/errors-log.txt", true);
+    error_file_sink->set_level(spdlog::level::err);
+    error_file_sink->set_pattern(errors_log_format);
+    logger_sinks.push_back(error_file_sink);
+    //--------------------------------------------------------------------------------------------------------------------------------
+    auto logger = std::make_shared<spdlog::logger>("client_logger", logger_sinks.begin(), logger_sinks.end());
+    logger->set_level(spdlog::level::trace);
+
+    // use warn_logger only for "warning-log.txt"
+    auto warn_logger = std::make_shared<spdlog::logger>("client_warn_logger", warn_logger_sinks.begin(), warn_logger_sinks.end());
+    warn_logger->set_level(spdlog::level::warn);
+
+
+    spdlog::register_logger(logger);
+    spdlog::register_logger(warn_logger);
+
+    client_logger = spdlog::get("client_logger");
+    client_warn_logger = spdlog::get("client_warn_logger");
+
 }
 
 MainWindow::~MainWindow()
@@ -34,8 +74,12 @@ void MainWindow::setupClient(const char *hostname, const size_t portno)
 
 void MainWindow::getData()
 {
-    if (currentPath.isEmpty())
+    if (currentPath.isEmpty()) {
+        client_logger->warn("No path given");
+        client_logger->info("getting data...");
+        client_warn_logger->warn("No path given");
         throw std::runtime_error("No path given");
+    }
 
     for (auto el = defaultExtensionsMap.begin(); el != defaultExtensionsMap.end(); el++)
     {

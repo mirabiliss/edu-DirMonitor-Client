@@ -4,7 +4,10 @@ void Client::setupThis()
 {
     sockfd_ = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd_ < 0)
+    {
+        //logger->error("Error opening socket");
         throw std::runtime_error("ERROR opening socket");
+    }
 
     server_ = gethostbyname(hostname_.c_str());
     if (!server_)

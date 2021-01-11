@@ -9,6 +9,11 @@
 #include <QDialogButtonBox>
 #include <QFile>
 #include <QDateTime>
+#include <QDir>
+
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/basic_file_sink.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 using nlohmann::json;
 
@@ -47,5 +52,14 @@ private:
     json currentData;
     QMap<QAction*, QString> defaultExtensionsMap;
     QStringList extensions;
+
+    std::shared_ptr<spdlog::logger> client_logger;
+    std::shared_ptr<spdlog::logger> client_warn_logger;
+
+    const std::string basic_log_format = "[%T][%n:%l]%15v";
+    const std::string errors_log_format = "[%T][%l][%@]%15v";
+
+    std::vector<spdlog::sink_ptr> logger_sinks;
+    std::vector<spdlog::sink_ptr> warn_logger_sinks;
 };
 #endif // MAINWINDOW_H

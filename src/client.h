@@ -9,7 +9,6 @@
 #include <netdb.h>
 #include <cstring>
 
-
 class Client
 {
 public:

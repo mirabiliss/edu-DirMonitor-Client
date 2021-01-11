@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+827e23f767c9839ee0d8b697bd86c0b3 CMakeFiles/edu-DirMonitor-Client_autogen
