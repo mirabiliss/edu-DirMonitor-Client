@@ -41,9 +41,20 @@ void Client::setupThis()
         __throw_exception_again;
     }
 
+    // checking server response for connection
+    auto response = this->recv();
+    try {
+        auto responseJson = json::parse(response);
+        if (!responseJson["status"].get<bool>()) {
+            std::string errorText = responseJson["reason"].get<std::string>();
+            throw std::runtime_error(errorText);
+        }
+    } catch (...) {
+        __throw_exception_again;
+    }
 }
 
-std::string Client::get(const std::string &req)
+void Client::send(const std::string &req)
 {
     logger->debug("Writing to the socket...");
 
@@ -52,14 +63,17 @@ std::string Client::get(const std::string &req)
         throw std::runtime_error("Error writing to socket.");
 
     logger->info("Request has been written to the socket.");
+}
 
+std::string Client::recv()
+{
     char *buffer = new char[MAX_RESPONSE_LENGTH];
     if (!buffer) {
         throw std::runtime_error("Memory for string buffer was not allocated.");
     }
     logger->debug("Reading from socket...");
 
-    n = read(sockfd_, buffer, MAX_RESPONSE_LENGTH);
+    int n = read(sockfd_, buffer, MAX_RESPONSE_LENGTH);
     if (n < 0)
         throw std::runtime_error("Error reading from the socket.");
 
@@ -67,6 +81,14 @@ std::string Client::get(const std::string &req)
 
     auto res = std::string(buffer);
     delete []buffer;
+
+    return res;
+}
+
+std::string Client::get(const std::string &req)
+{
+    send(req);
+    auto res = recv();
 
     return res;
 }

@@ -9,9 +9,12 @@
 #include <netdb.h>
 #include <cstring>
 
+#include <nlohmann/json.hpp>
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/basic_file_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
+
+using nlohmann::json;
 
 class Client
 {
@@ -26,6 +29,10 @@ public:
     void setupThis();
 
     std::string get(const std::string &req);
+
+    void send(const std::string &req);
+
+    std::string recv();
 
 private:
     std::string hostname_;
