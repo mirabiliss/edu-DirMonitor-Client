@@ -11,25 +11,26 @@ void MainWindow::setupLoggers()
     console_sink->set_level(spdlog::level::debug);
     console_sink->set_pattern(basic_log_format);
     logger_sinks.push_back(console_sink);
+
     // file sinks:
     // basic-log.txt
-    auto basic_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/basic-log.txt", true);
+    auto basic_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(QDir::tempPath().toStdString() + "/logs-client/basic-log.txt", true);
     basic_file_sink->set_level(spdlog::level::trace);
     basic_file_sink->set_pattern(basic_log_format);
     logger_sinks.push_back(basic_file_sink);
 
     // warning-log.txt
-    auto warn_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/warns-log.txt", true);
+    auto warn_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(QDir::tempPath().toStdString() + "/logs-client/warns-log.txt", true);
     warn_file_sink->set_level(spdlog::level::warn);
     warn_file_sink->set_pattern(errors_log_format);
     warn_logger_sinks.push_back(warn_file_sink);
 
     // errors-log.txt
-    auto error_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/errors-log.txt", true);
+    auto error_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(QDir::tempPath().toStdString() + "/logs-client/errors-log.txt", true);
     error_file_sink->set_level(spdlog::level::err);
     error_file_sink->set_pattern(errors_log_format);
     logger_sinks.push_back(error_file_sink);
-    //--------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------
     auto logger = std::make_shared<spdlog::logger>("client_logger", logger_sinks.begin(), logger_sinks.end());
     logger->set_level(spdlog::level::trace);
 
@@ -40,6 +41,8 @@ void MainWindow::setupLoggers()
 
     spdlog::register_logger(logger);
     spdlog::register_logger(warn_logger);
+
+    spdlog::set_default_logger(logger);
 
     client_logger = spdlog::get("client_logger");
     client_warn_logger = spdlog::get("client_warn_logger");
@@ -82,12 +85,21 @@ void MainWindow::setupClient(const char *hostname, const size_t portno)
 
 void MainWindow::getData()
 {
+    client_logger->debug("Getting the path...");
+
+    try {
     if (currentPath.isEmpty()) {
         client_logger->warn("No path given");
-        client_logger->info("getting data...");
         client_warn_logger->warn("No path given");
         throw std::runtime_error("No path given");
     }
+} catch(std::runtime_error) {
+        QMessageBox::warning(this, "No path given", "Set the path before proceeding");
+        return;
+    }
+
+    client_logger->info("The path has been succesfully set");
+    client_logger->info("The path: '{}'", currentPath.toStdString());
 
     for (auto el = defaultExtensionsMap.begin(); el != defaultExtensionsMap.end(); el++)
     {
@@ -97,14 +109,21 @@ void MainWindow::getData()
         }
     }
 
+
+
     std::string request = formRequest(this->currentPath, this->extensions);
 
+    client_logger->info("Request has been succesfully set");
+    client_logger->info("The request: {}", request);
+
+    // this part !!!
     std::string response;
     try {
         response = client->get(request);
     } catch (std::runtime_error& e) {
-        qDebug() << e.what();
+        client_logger->warn("{}", e.what());
     }
+    // don't forget!!!
 
     // Parse response
     this->currentData = json::parse(response);
@@ -144,6 +163,8 @@ void MainWindow::getData()
 
 std::string MainWindow::formRequest(QString dirpath, QStringList extensions)
 {
+    client_logger->debug("Forming request...");
+
     QString request = QString("%1\n%2").arg(dirpath, extensions.join(" | "));
     return request.toStdString();
 }
@@ -185,7 +206,9 @@ void MainWindow::on_actionConnect_triggered()
         portno = portnoLineEdit->text().toUInt();
 
         setupClient(hostname.toLocal8Bit(), portno);
+
     }
+
 }
 
 void MainWindow::on_actionAdd_custom_triggered()

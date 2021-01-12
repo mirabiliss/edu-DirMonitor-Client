@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include "src/client.h"
 #include <nlohmann/json.hpp>
 #include <QInputDialog>
@@ -31,6 +32,8 @@ public:
     void setupClient(const char *hostname, const size_t portno);
 
     void getData();
+
+    void setupLoggers();
 
 private slots:
     void on_actionExit_triggered();
