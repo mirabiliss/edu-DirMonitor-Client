@@ -9,6 +9,8 @@
 #include <netdb.h>
 #include <cstring>
 
+#include <QPair>
+
 #include <nlohmann/json.hpp>
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/basic_file_sink.h"
@@ -19,7 +21,7 @@ using nlohmann::json;
 class Client
 {
 public:
-    static const size_t MAX_RESPONSE_LENGTH = 1 << 24;
+    static const size_t CHUNK_SIZE = 1 << 9;
 
     Client(std::string hostname, const size_t portno)
         : hostname_(std::move(hostname)), portno_(portno) {

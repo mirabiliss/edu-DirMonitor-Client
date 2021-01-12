@@ -177,10 +177,10 @@ bool MainWindow::getData() {
   // Parse response
   try {
     this->currentData = json::parse(response);
-  } catch (...) {
-    client_logger->error("Error parsing response from server.");
+  } catch (const json::parse_error &e) {
+    client_logger->error("Error parsing response from server: {}", e.what());
     QMessageBox::information(this, "Error.",
-                             "The response from server was malformed :(");
+                             e.what());
   }
 
   return currentData["status"].get<bool>();

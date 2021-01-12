@@ -49,7 +49,10 @@ void Client::setupThis()
             std::string errorText = responseJson["reason"].get<std::string>();
             throw std::runtime_error(errorText);
         }
-    } catch (...) {
+    } catch (const json::parse_error &e) {
+        std::cout << e.what();
+        __throw_exception_again;
+    } catch (const std::runtime_error &e) {
         __throw_exception_again;
     }
 }
@@ -67,21 +70,33 @@ void Client::send(const std::string &req)
 
 std::string Client::recv()
 {
-    char *buffer = new char[MAX_RESPONSE_LENGTH];
+    logger->debug("Reading from socket...");
+
+    uint32_t readBytes = 0;
+    uint32_t datalen;
+    if (read(sockfd_, &datalen, sizeof(datalen)) < 0)
+        throw std::runtime_error("Could not read length of retrieving data.");
+    datalen = ntohl(datalen);
+
+    char *buffer = new char[datalen];
     if (!buffer) {
         throw std::runtime_error("Memory for string buffer was not allocated.");
     }
-    logger->debug("Reading from socket...");
+    bzero(buffer, datalen);
+    char *buffy = new char[CHUNK_SIZE];
+    while (readBytes < datalen) {
+        int n = read(sockfd_, buffy, CHUNK_SIZE);
+        if (n < 0) break;
+        readBytes += n;
 
-    int n = read(sockfd_, buffer, MAX_RESPONSE_LENGTH);
-    if (n < 0)
-        throw std::runtime_error("Error reading from the socket.");
+        strcat(buffer, buffy);
+        bzero(buffy, CHUNK_SIZE);
+    }
 
     logger->info("Response has been read from the socket.");
 
-    auto res = std::string(buffer);
-    delete []buffer;
-
+    std::string res;
+    res.assign(buffer, datalen);
     return res;
 }
 

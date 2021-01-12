@@ -81,6 +81,8 @@ netdb.h
 -
 cstring
 -
+nlohmann/json.hpp
+-
 spdlog/spdlog.h
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/spdlog/spdlog.h
 spdlog/sinks/basic_file_sink.h
