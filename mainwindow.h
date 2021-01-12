@@ -45,7 +45,8 @@ private slots:
 private:
     bool getData();
     void showData();
-    std::string formRequest(QString dirpath, QStringList extensions);
+    std::string formRequest(QString dirpath, QSet<QString> extensions);
+    bool isConnected();
 
 private:
     Ui::MainWindow *ui;
@@ -53,8 +54,7 @@ private:
     QString currentPath = "";
     json currentData;
     QMap<QAction*, QString> defaultExtensionsMap;
-    QStringList extensions;
-    bool isConnected();
+    QSet<QString> extensions;
 
     std::shared_ptr<spdlog::logger> client_logger;
     std::shared_ptr<spdlog::logger> client_warn_logger;
@@ -65,4 +65,5 @@ private:
     std::vector<spdlog::sink_ptr> logger_sinks;
     std::vector<spdlog::sink_ptr> warn_logger_sinks;
 };
+
 #endif // MAINWINDOW_H

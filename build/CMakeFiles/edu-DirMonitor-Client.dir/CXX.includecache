@@ -62,10 +62,6 @@ spdlog/sinks/basic_file_sink.h
 spdlog/sinks/stdout_color_sinks.h
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/spdlog/sinks/stdout_color_sinks.h
 
-/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.cpp
-client.h
-/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
-
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
 iostream
 -
