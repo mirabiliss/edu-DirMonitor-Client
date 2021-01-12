@@ -13,11 +13,16 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "FMT_LOCALE"
+  "FMT_SHARED"
   "JSON_USE_IMPLICIT_CONVERSIONS=1"
   "QT_CORE_LIB"
   "QT_GUI_LIB"
   "QT_NO_DEBUG"
   "QT_WIDGETS_LIB"
+  "SPDLOG_COMPILED_LIB"
+  "SPDLOG_FMT_EXTERNAL"
+  "SPDLOG_SHARED_LIB"
   )
 
 # The include file search paths:

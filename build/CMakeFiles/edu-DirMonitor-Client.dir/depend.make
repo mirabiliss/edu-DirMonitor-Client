@@ -7,6 +7,7 @@ CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilat
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: ../src/client.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/QDateTime
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/QDebug
+CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/QDir
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/QFile
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qalgorithms.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qarraydata.h
@@ -28,8 +29,10 @@ CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilat
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qdatastream.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qdatetime.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qdebug.h
+CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qdir.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qfile.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qfiledevice.h
+CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qfileinfo.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qflags.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qgenericatomic.h
 CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilation.cpp.o: /usr/include/qt/QtCore/qglobal.h
@@ -134,6 +137,7 @@ CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: ../mainwindow.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: ../src/client.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/QDateTime
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/QDebug
+CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/QDir
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/QFile
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qalgorithms.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qarraydata.h
@@ -156,9 +160,11 @@ CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qcoreeve
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qdatastream.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qdatetime.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qdebug.h
+CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qdir.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qeventloop.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qfile.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qfiledevice.h
+CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qfileinfo.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qflags.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qgenericatomic.h
 CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o: /usr/include/qt/QtCore/qglobal.h
@@ -268,6 +274,7 @@ CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: ../mainwindow.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: ../src/client.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/QDateTime
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/QDebug
+CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/QDir
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/QFile
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/QVariant
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qabstractitemmodel.h
@@ -292,9 +299,11 @@ CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qc
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qdatastream.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qdatetime.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qdebug.h
+CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qdir.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qeventloop.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qfile.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qfiledevice.h
+CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qfileinfo.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qflags.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qgenericatomic.h
 CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o: /usr/include/qt/QtCore/qglobal.h

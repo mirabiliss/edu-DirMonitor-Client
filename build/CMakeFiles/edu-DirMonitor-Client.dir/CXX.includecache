@@ -25,17 +25,19 @@ mainwindow.h
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/mainwindow.h
 QApplication
 -
-QMessageBox
--
 
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/mainwindow.cpp
 mainwindow.h
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/mainwindow.h
 ./ui_mainwindow.h
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/ui_mainwindow.h
+chrono
+-
 
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/mainwindow.h
 QMainWindow
+-
+QMessageBox
 -
 src/client.h
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
@@ -51,12 +53,14 @@ QFile
 -
 QDateTime
 -
-QMessageBox
+QDir
 -
-
-/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.cpp
-client.h
-/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
+spdlog/spdlog.h
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/spdlog/spdlog.h
+spdlog/sinks/basic_file_sink.h
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/spdlog/sinks/basic_file_sink.h
+spdlog/sinks/stdout_color_sinks.h
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/spdlog/sinks/stdout_color_sinks.h
 
 /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
 iostream
@@ -73,6 +77,12 @@ netdb.h
 -
 cstring
 -
+spdlog/spdlog.h
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/spdlog/spdlog.h
+spdlog/sinks/basic_file_sink.h
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/spdlog/sinks/basic_file_sink.h
+spdlog/sinks/stdout_color_sinks.h
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/src/spdlog/sinks/stdout_color_sinks.h
 
 /usr/include/qt/QtCore/QDateTime
 qdatetime.h
@@ -81,6 +91,10 @@ qdatetime.h
 /usr/include/qt/QtCore/QDebug
 qdebug.h
 /usr/include/qt/QtCore/qdebug.h
+
+/usr/include/qt/QtCore/QDir
+qdir.h
+/usr/include/qt/QtCore/qdir.h
 
 /usr/include/qt/QtCore/QFile
 qfile.h
@@ -270,6 +284,16 @@ map
 utility
 -
 
+/usr/include/qt/QtCore/qdir.h
+QtCore/qstring.h
+-
+QtCore/qfileinfo.h
+-
+QtCore/qstringlist.h
+-
+QtCore/qshareddata.h
+-
+
 /usr/include/qt/QtCore/qeventloop.h
 QtCore/qobject.h
 -
@@ -286,6 +310,16 @@ stdio.h
 QtCore/qiodevice.h
 -
 QtCore/qstring.h
+-
+
+/usr/include/qt/QtCore/qfileinfo.h
+QtCore/qfile.h
+-
+QtCore/qlist.h
+-
+QtCore/qshareddata.h
+-
+QtCore/qmetatype.h
 -
 
 /usr/include/qt/QtCore/qflags.h

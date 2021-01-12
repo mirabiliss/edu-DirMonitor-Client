@@ -204,8 +204,14 @@ edu-DirMonitor-Client_BINARY_DIR:STATIC=/home/ghadd/Development/CPP/edu-DirMonit
 //Value Computed by CMake
 edu-DirMonitor-Client_SOURCE_DIR:STATIC=/home/ghadd/Development/CPP/edu-DirMonitor-Client
 
+//The directory containing a CMake configuration file for fmt.
+fmt_DIR:PATH=/usr/lib64/cmake/fmt
+
 //The directory containing a CMake configuration file for nlohmann_json.
 nlohmann_json_DIR:PATH=/usr/lib64/cmake/nlohmann_json
+
+//The directory containing a CMake configuration file for spdlog.
+spdlog_DIR:PATH=/usr/lib64/cmake/spdlog
 
 
 ########################
@@ -276,6 +282,14 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
+//Have library pthreads
+CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
+//Have library pthread
+CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
+//Have include pthread.h
+CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/ghadd/Development/CPP/edu-DirMonitor-Client
@@ -341,6 +355,8 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding nlohmann_json
 FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/usr/lib64/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.9.0(3.2.0)]
 

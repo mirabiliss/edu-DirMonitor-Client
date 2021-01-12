@@ -8,6 +8,7 @@ CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilat
  /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
  /usr/include/qt/QtCore/QDateTime
  /usr/include/qt/QtCore/QDebug
+ /usr/include/qt/QtCore/QDir
  /usr/include/qt/QtCore/QFile
  /usr/include/qt/QtCore/qalgorithms.h
  /usr/include/qt/QtCore/qarraydata.h
@@ -29,8 +30,10 @@ CMakeFiles/edu-DirMonitor-Client.dir/edu-DirMonitor-Client_autogen/mocs_compilat
  /usr/include/qt/QtCore/qdatastream.h
  /usr/include/qt/QtCore/qdatetime.h
  /usr/include/qt/QtCore/qdebug.h
+ /usr/include/qt/QtCore/qdir.h
  /usr/include/qt/QtCore/qfile.h
  /usr/include/qt/QtCore/qfiledevice.h
+ /usr/include/qt/QtCore/qfileinfo.h
  /usr/include/qt/QtCore/qflags.h
  /usr/include/qt/QtCore/qgenericatomic.h
  /usr/include/qt/QtCore/qglobal.h
@@ -135,6 +138,7 @@ CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o
  /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
  /usr/include/qt/QtCore/QDateTime
  /usr/include/qt/QtCore/QDebug
+ /usr/include/qt/QtCore/QDir
  /usr/include/qt/QtCore/QFile
  /usr/include/qt/QtCore/qalgorithms.h
  /usr/include/qt/QtCore/qarraydata.h
@@ -157,9 +161,11 @@ CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o
  /usr/include/qt/QtCore/qdatastream.h
  /usr/include/qt/QtCore/qdatetime.h
  /usr/include/qt/QtCore/qdebug.h
+ /usr/include/qt/QtCore/qdir.h
  /usr/include/qt/QtCore/qeventloop.h
  /usr/include/qt/QtCore/qfile.h
  /usr/include/qt/QtCore/qfiledevice.h
+ /usr/include/qt/QtCore/qfileinfo.h
  /usr/include/qt/QtCore/qflags.h
  /usr/include/qt/QtCore/qgenericatomic.h
  /usr/include/qt/QtCore/qglobal.h
@@ -269,6 +275,7 @@ CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o
  /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h
  /usr/include/qt/QtCore/QDateTime
  /usr/include/qt/QtCore/QDebug
+ /usr/include/qt/QtCore/QDir
  /usr/include/qt/QtCore/QFile
  /usr/include/qt/QtCore/QVariant
  /usr/include/qt/QtCore/qabstractitemmodel.h
@@ -293,9 +300,11 @@ CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o
  /usr/include/qt/QtCore/qdatastream.h
  /usr/include/qt/QtCore/qdatetime.h
  /usr/include/qt/QtCore/qdebug.h
+ /usr/include/qt/QtCore/qdir.h
  /usr/include/qt/QtCore/qeventloop.h
  /usr/include/qt/QtCore/qfile.h
  /usr/include/qt/QtCore/qfiledevice.h
+ /usr/include/qt/QtCore/qfileinfo.h
  /usr/include/qt/QtCore/qflags.h
  /usr/include/qt/QtCore/qgenericatomic.h
  /usr/include/qt/QtCore/qglobal.h

@@ -143,7 +143,9 @@ edu-DirMonitor-Client: CMakeFiles/edu-DirMonitor-Client.dir/main.cpp.o
 edu-DirMonitor-Client: CMakeFiles/edu-DirMonitor-Client.dir/mainwindow.cpp.o
 edu-DirMonitor-Client: CMakeFiles/edu-DirMonitor-Client.dir/src/client.cpp.o
 edu-DirMonitor-Client: CMakeFiles/edu-DirMonitor-Client.dir/build.make
+edu-DirMonitor-Client: /usr/lib/libspdlog.so.1.8.2
 edu-DirMonitor-Client: /usr/lib/libQt5Widgets.so.5.15.1
+edu-DirMonitor-Client: /usr/lib/libfmt.so.7.1.3
 edu-DirMonitor-Client: /usr/lib/libQt5Gui.so.5.15.1
 edu-DirMonitor-Client: /usr/lib/libQt5Core.so.5.15.1
 edu-DirMonitor-Client: CMakeFiles/edu-DirMonitor-Client.dir/link.txt

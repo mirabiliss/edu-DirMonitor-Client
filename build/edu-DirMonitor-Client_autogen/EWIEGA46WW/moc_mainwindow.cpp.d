@@ -3,10 +3,13 @@
   /home/ghadd/Development/CPP/edu-DirMonitor-Client/src/client.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/asm-generic/errno.h \
   /usr/include/asm-generic/posix_types.h \
   /usr/include/asm-generic/socket.h \
   /usr/include/asm-generic/sockios.h \
   /usr/include/asm/bitsperlong.h \
+  /usr/include/asm/errno.h \
   /usr/include/asm/posix_types.h \
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/socket.h \
@@ -18,6 +21,7 @@
   /usr/include/bits/endian.h \
   /usr/include/bits/endianness.h \
   /usr/include/bits/environments.h \
+  /usr/include/bits/errno.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/getopt_core.h \
@@ -62,6 +66,7 @@
   /usr/include/bits/types/clock_t.h \
   /usr/include/bits/types/clockid_t.h \
   /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/error_t.h \
   /usr/include/bits/types/locale_t.h \
   /usr/include/bits/types/mbstate_t.h \
   /usr/include/bits/types/sigevent_t.h \
@@ -190,6 +195,8 @@
   /usr/include/c++/10.2.0/bits/vector.tcc \
   /usr/include/c++/10.2.0/cassert \
   /usr/include/c++/10.2.0/cctype \
+  /usr/include/c++/10.2.0/cerrno \
+  /usr/include/c++/10.2.0/chrono \
   /usr/include/c++/10.2.0/clocale \
   /usr/include/c++/10.2.0/cmath \
   /usr/include/c++/10.2.0/compare \
@@ -224,6 +231,7 @@
   /usr/include/c++/10.2.0/list \
   /usr/include/c++/10.2.0/map \
   /usr/include/c++/10.2.0/memory \
+  /usr/include/c++/10.2.0/mutex \
   /usr/include/c++/10.2.0/new \
   /usr/include/c++/10.2.0/numeric \
   /usr/include/c++/10.2.0/optional \
@@ -268,10 +276,14 @@
   /usr/include/c++/10.2.0/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/ctype.h \
   /usr/include/endian.h \
+  /usr/include/errno.h \
   /usr/include/features.h \
+  /usr/include/fmt/core.h \
+  /usr/include/fmt/format.h \
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
   /usr/include/limits.h \
+  /usr/include/linux/errno.h \
   /usr/include/linux/limits.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/stddef.h \
@@ -318,6 +330,7 @@
   /usr/include/pthread.h \
   /usr/include/qt/QtCore/QDateTime \
   /usr/include/qt/QtCore/QDebug \
+  /usr/include/qt/QtCore/QDir \
   /usr/include/qt/QtCore/QFile \
   /usr/include/qt/QtCore/qalgorithms.h \
   /usr/include/qt/QtCore/qarraydata.h \
@@ -335,8 +348,10 @@
   /usr/include/qt/QtCore/qdatastream.h \
   /usr/include/qt/QtCore/qdatetime.h \
   /usr/include/qt/QtCore/qdebug.h \
+  /usr/include/qt/QtCore/qdir.h \
   /usr/include/qt/QtCore/qfile.h \
   /usr/include/qt/QtCore/qfiledevice.h \
+  /usr/include/qt/QtCore/qfileinfo.h \
   /usr/include/qt/QtCore/qflags.h \
   /usr/include/qt/QtCore/qgenericatomic.h \
   /usr/include/qt/QtCore/qglobal.h \
@@ -429,6 +444,27 @@
   /usr/include/qt/QtWidgets/qwidget.h \
   /usr/include/rpc/netdb.h \
   /usr/include/sched.h \
+  /usr/include/spdlog/common.h \
+  /usr/include/spdlog/details/backtracer.h \
+  /usr/include/spdlog/details/circular_q.h \
+  /usr/include/spdlog/details/console_globals.h \
+  /usr/include/spdlog/details/file_helper.h \
+  /usr/include/spdlog/details/log_msg.h \
+  /usr/include/spdlog/details/log_msg_buffer.h \
+  /usr/include/spdlog/details/null_mutex.h \
+  /usr/include/spdlog/details/registry.h \
+  /usr/include/spdlog/details/synchronous_factory.h \
+  /usr/include/spdlog/fmt/fmt.h \
+  /usr/include/spdlog/formatter.h \
+  /usr/include/spdlog/logger.h \
+  /usr/include/spdlog/sinks/ansicolor_sink.h \
+  /usr/include/spdlog/sinks/base_sink.h \
+  /usr/include/spdlog/sinks/basic_file_sink.h \
+  /usr/include/spdlog/sinks/sink.h \
+  /usr/include/spdlog/sinks/stdout_color_sinks.h \
+  /usr/include/spdlog/spdlog.h \
+  /usr/include/spdlog/tweakme.h \
+  /usr/include/spdlog/version.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \

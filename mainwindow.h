@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include "src/client.h"
 #include <nlohmann/json.hpp>
 #include <QInputDialog>
@@ -9,7 +10,11 @@
 #include <QDialogButtonBox>
 #include <QFile>
 #include <QDateTime>
-#include <QMessageBox>
+#include <QDir>
+
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/basic_file_sink.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 using nlohmann::json;
 
@@ -25,8 +30,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void setupClient(const char *hostname, const size_t portno);
-
-    bool getData();
+    void setupLoggers();
 
 private slots:
     void on_actionExit_triggered();
@@ -39,7 +43,10 @@ private slots:
     void on_actionConnect_triggered();
 
 private:
-    std::string formRequest(QString dirpath, QStringList extensions);
+    bool getData();
+    void showData();
+    std::string formRequest(QString dirpath, QSet<QString> extensions);
+    bool isConnected();
 
 private:
     Ui::MainWindow *ui;
@@ -48,6 +55,15 @@ private:
     json currentData;
     QMap<QAction*, QString> defaultExtensionsMap;
     QSet<QString> extensions;
-    void showData();
+
+    std::shared_ptr<spdlog::logger> client_logger;
+    std::shared_ptr<spdlog::logger> client_warn_logger;
+
+    const std::string basic_log_format = "[%T][%n:%l]%15v";
+    const std::string errors_log_format = "[%T][%l][%@]%15v";
+
+    std::vector<spdlog::sink_ptr> logger_sinks;
+    std::vector<spdlog::sink_ptr> warn_logger_sinks;
 };
+
 #endif // MAINWINDOW_H
