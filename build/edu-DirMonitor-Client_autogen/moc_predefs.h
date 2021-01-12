@@ -32,7 +32,6 @@
 #define __cpp_binary_literals 201304L
 #define JSON_USE_IMPLICIT_CONVERSIONS 1
 #define __FLT64_DECIMAL_DIG__ 17
-#define __CET__ 3
 #define __GCC_ATOMIC_CHAR32_T_LOCK_FREE 2
 #define __cpp_variadic_templates 200704L
 #define __UINT_FAST64_MAX__ 0xffffffffffffffffUL
@@ -64,6 +63,7 @@
 #define __unix 1
 #define __UINT32_MAX__ 0xffffffffU
 #define __GXX_EXPERIMENTAL_CXX0X__ 1
+#define SPDLOG_FMT_EXTERNAL 1
 #define __FLT128_MIN_EXP__ (-16381)
 #define __WINT_MIN__ 0U
 #define __FLT128_MIN_10_EXP__ (-4931)
@@ -85,7 +85,7 @@
 #define __FLT_EPSILON__ 1.19209289550781250000000000000000000e-7F
 #define __GXX_WEAK__ 1
 #define __SHRT_WIDTH__ 16
-#define __FLT32_MAX_EXP__ 128
+#define SPDLOG_SHARED_LIB 1
 #define __LDBL_MIN__ 3.36210314311209350626267781732175260e-4932L
 #define __DEC32_MAX__ 9.999999E96DF
 #define __cpp_threadsafe_static_init 200806L
@@ -156,6 +156,7 @@
 #define __SIZEOF_WINT_T__ 4
 #define __LONG_LONG_WIDTH__ 64
 #define __cpp_initializer_lists 200806L
+#define __FLT32_MAX_EXP__ 128
 #define ABI_ID "ELF"
 #define __cpp_hex_float 201603L
 #define __GXX_ABI_VERSION 1014
@@ -205,6 +206,7 @@
 #define __DEC64_EPSILON__ 1E-15DD
 #define __ORDER_PDP_ENDIAN__ 3412
 #define __DEC128_MIN_EXP__ (-6142)
+#define SPDLOG_COMPILED_LIB 1
 #define __INT_FAST32_TYPE__ long int
 #define __UINT_LEAST16_TYPE__ short unsigned int
 #define unix 1
@@ -272,6 +274,7 @@
 #define __PTRDIFF_WIDTH__ 64
 #define __LDBL_MANT_DIG__ 64
 #define __cpp_range_based_for 200907L
+#define FMT_SHARED 1
 #define __FLT64_HAS_INFINITY__ 1
 #define __FLT64X_MAX__ 1.18973149535723176502126385303097021e+4932F64x
 #define __SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)
@@ -332,6 +335,7 @@
 #define __FLT128_HAS_QUIET_NAN__ 1
 #define __INTMAX_MAX__ 0x7fffffffffffffffL
 #define __INT_FAST8_TYPE__ signed char
+#define FMT_LOCALE 1
 #define __FLT64X_MIN__ 3.36210314311209350626267781732175260e-4932F64x
 #define __GNUC_STDC_INLINE__ 1
 #define __FLT64_HAS_DENORM__ 1

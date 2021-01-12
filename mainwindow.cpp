@@ -80,53 +80,23 @@ MainWindow::~MainWindow()
 void MainWindow::setupClient(const char *hostname, const size_t portno)
 {
     client = new Client(hostname, portno);
-    client->setupThis();
+    try {
+        client->setupThis();
+        QMessageBox::information(this, "Success.", "Connection established.");
+    } catch (const std::runtime_error &e) {
+        QMessageBox::warning(this, "Error.", e.what());
+    }
 }
 
-void MainWindow::getData()
+void MainWindow::showData()
 {
-    client_logger->debug("Getting the path...");
+    // clear ui
+    ui->tableWidget->clear();
+    ui->tableWidget->setColumnCount(0);
+    ui->tableWidget->setRowCount(0);
+    ui->totalSize_label->clear();
 
-    try {
-    if (currentPath.isEmpty()) {
-        client_logger->warn("No path given");
-        client_warn_logger->warn("No path given");
-        throw std::runtime_error("No path given");
-    }
-} catch(std::runtime_error) {
-        QMessageBox::warning(this, "No path given", "Set the path before proceeding");
-        return;
-    }
-
-    client_logger->info("The path has been succesfully set");
-    client_logger->info("The path: '{}'", currentPath.toStdString());
-
-    for (auto el = defaultExtensionsMap.begin(); el != defaultExtensionsMap.end(); el++)
-    {
-        if (el.key()->isChecked())
-        {
-            this->extensions << el.value();
-        }
-    }
-
-
-
-    std::string request = formRequest(this->currentPath, this->extensions);
-
-    client_logger->info("Request has been succesfully set");
-    client_logger->info("The request: {}", request);
-
-    // this part !!!
-    std::string response;
-    try {
-        response = client->get(request);
-    } catch (std::runtime_error& e) {
-        client_logger->warn("{}", e.what());
-    }
-    // don't forget!!!
-
-    // Parse response
-    this->currentData = json::parse(response);
+    ui->path_label->setText(currentPath);
 
     // total size labels
     ui->totalSize_label->setText(tr("Total size:\t") + QString::number(currentData["total"].get<quint64>() / 1e6) + tr(" Mb"));
@@ -161,12 +131,80 @@ void MainWindow::getData()
     }
 }
 
+bool MainWindow::getData()
+{
+    client_logger->debug("Getting the path...");
+
+    if (currentPath.isEmpty()) {
+        client_logger->warn("No path given");
+        client_warn_logger->warn("No path given");
+        QMessageBox::warning(this, "No path given", "Set the path before proceeding");
+        return false;
+    }
+
+    client_logger->info("The path has been succesfully set to '{}'", currentPath.toStdString());
+    for (auto el = defaultExtensionsMap.begin(); el != defaultExtensionsMap.end(); el++)
+    {
+        if (el.key()->isChecked())
+        {
+            this->extensions << el.value();
+        }
+    }
+
+
+
+    std::string request = formRequest(this->currentPath, this->extensions);
+
+    client_logger->info("Request has been succesfully set");
+    client_logger->info("The request: {}", request);
+
+    // this part !!!
+    std::string response;
+    try {
+        response = client->get(request);
+    } catch (std::runtime_error& e) {
+        client_logger->warn("{}", e.what());
+        QMessageBox::warning(this, "Server refused to answer", e.what());
+    }
+    // don't forget!!!
+
+    // Parse response
+    try {
+        this->currentData = json::parse(response);
+    } catch (...) {
+        client_logger->error("Error parsing response from server.");
+        QMessageBox::information(this, "Error.", "The response from server was malformed :(");
+        return false;
+    }
+
+    return currentData["status"].get<bool>();
+}
+
 std::string MainWindow::formRequest(QString dirpath, QStringList extensions)
 {
     client_logger->debug("Forming request...");
 
     QString request = QString("%1\n%2").arg(dirpath, extensions.join(" | "));
     return request.toStdString();
+}
+
+bool MainWindow::isConnected()
+{
+    client_logger->debug("Performing connection check.");
+    if (!client) {
+        client_logger->error("Client is null.");
+        return false;
+    }
+
+    try {
+        client->get("__test__");
+        client_logger->debug("Connection is stable.");
+        return true;
+    } catch (const std::runtime_error &e) {
+        client_logger->debug("Performing connection check");
+        client_logger->error("Connection is not set up.");
+    }
+    return false;
 }
 
 void MainWindow::on_actionConnect_triggered()
@@ -206,7 +244,6 @@ void MainWindow::on_actionConnect_triggered()
         portno = portnoLineEdit->text().toUInt();
 
         setupClient(hostname.toLocal8Bit(), portno);
-
     }
 
 }
@@ -221,17 +258,20 @@ void MainWindow::on_actionAdd_custom_triggered()
 
 void MainWindow::on_actionChoose_path_triggered()
 {
-    // clear ui
-    ui->tableWidget->clear();
-    ui->tableWidget->setColumnCount(0);
-    ui->tableWidget->setRowCount(0);
-    ui->totalSize_label->clear();
+    if (!isConnected()) {
+        client_logger->info("Declining Choosing path and connection is not established.");
+        QMessageBox::warning(this, "Connection failure.", "Connection with server is not established.");
+        return;
+    }
 
     currentPath = QInputDialog::getText(this, tr("Choose path to be tracked"), tr("Enter path: "));
 
-    ui->path_label->setText(currentPath);
-
-    getData();
+    if (getData()) {
+        showData();
+    } else {
+        std::string reason = this->currentData["reason"].get<std::string>();
+        QMessageBox::critical(this, "Error", QString::fromStdString(reason));
+    }
 }
 
 void MainWindow::on_actionExit_triggered()

@@ -33,6 +33,11 @@ else()
   )
 endif()
 
+if(NOT TARGET spdlog)
+    # Stand-alone build
+    find_package(spdlog REQUIRED)
+endif()
+target_link_libraries(edu-DirMonitor-Client PRIVATE spdlog::spdlog)
 target_link_libraries(edu-DirMonitor-Client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 find_package(nlohmann_json 3.2.0 REQUIRED)

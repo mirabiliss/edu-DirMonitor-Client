@@ -1,4 +1,4 @@
-/home/oleh/edu-DirMonitor-Client/build/CMakeFiles/rebuild_cache.dir
-/home/oleh/edu-DirMonitor-Client/build/CMakeFiles/edu-DirMonitor-Client.dir
-/home/oleh/edu-DirMonitor-Client/build/CMakeFiles/edit_cache.dir
-/home/oleh/edu-DirMonitor-Client/build/CMakeFiles/edu-DirMonitor-Client_autogen.dir
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/build/CMakeFiles/rebuild_cache.dir
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/build/CMakeFiles/edit_cache.dir
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/build/CMakeFiles/edu-DirMonitor-Client.dir
+/home/ghadd/Development/CPP/edu-DirMonitor-Client/build/CMakeFiles/edu-DirMonitor-Client_autogen.dir

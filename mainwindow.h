@@ -30,9 +30,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void setupClient(const char *hostname, const size_t portno);
-
-    void getData();
-
     void setupLoggers();
 
 private slots:
@@ -46,6 +43,8 @@ private slots:
     void on_actionConnect_triggered();
 
 private:
+    bool getData();
+    void showData();
     std::string formRequest(QString dirpath, QStringList extensions);
 
 private:
@@ -55,6 +54,7 @@ private:
     json currentData;
     QMap<QAction*, QString> defaultExtensionsMap;
     QStringList extensions;
+    bool isConnected();
 
     std::shared_ptr<spdlog::logger> client_logger;
     std::shared_ptr<spdlog::logger> client_warn_logger;
